@@ -3,7 +3,8 @@ const express=require('express');
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const cors=require('cors')
-const mongoose=require('mongoose')
+const mongoose=require('mongoose');
+var fs = require('fs');
 const app=express();
 const port=5000;
 //creating new router
@@ -106,7 +107,10 @@ app.delete("/students/:id",async(req,res)=>
 
 
 app.get('/testmulter', upload.single('file'),async(req,res)=>{
-    res.send("file uploaded")
+    // console.log(req.file.path)
+    const data= fs.readFileSync(req.file.path,{encoding:'utf8', flag:'r'});
+    // console.log(data)
+    res.send("the content of uploaded file is " + data)
 } )
 
 

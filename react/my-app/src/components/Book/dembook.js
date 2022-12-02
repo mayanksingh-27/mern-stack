@@ -1,15 +1,17 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import {Button} from '@mui/material';
+import {Button, Typography} from '@mui/material';
 import React, { useState, useEffect } from 'react'  
 import "./book.css"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import axios from 'axios';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-
+let count;
 
 function KitchenSinkExample()
- {
+ {  
+  const history=useNavigate();
     {  
         const [books,setBooks]=useState([]);
       
@@ -20,7 +22,9 @@ function KitchenSinkExample()
           setBooks(res.data))
         })
       
-          
+    const deleteHandler=()=>{
+  axios.delete(`http://localhost:5000/students/`).then(res=>res.data).then(()=>history("./books"))
+  }      
   return (
     <>
     <div>
@@ -30,8 +34,11 @@ function KitchenSinkExample()
         books.map((students)=>
         {
             const {_id,name,description,author,image}=students;
-            return <div className='card' key={_id}>
-                <Card style={{ width: '16rem'}}>
+            return <div className='card' key={_id} >
+                <Card     border={'Dark'}  
+style={{ width: '16rem'}
+                   
+                }>
     
       <Card.Img variant="top" src={image} />
       <Card.Body>
@@ -43,8 +50,8 @@ function KitchenSinkExample()
 
         </p>
         <Card.Body>
-      <Button >Delete</Button>
-      <Button LinkComponent={Link} to={`/books/${_id}`} >Update</Button>
+      <Button LinkComponent={Link}to={`/books/${_id}`} >Delete</Button>
+      <Button LinkComponent={Link} to={`/books/${_id}`} ><Typography><DeleteForeverIcon></DeleteForeverIcon></Typography>Update</Button>
       </Card.Body>
          
       </Card.Body>

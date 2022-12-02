@@ -7,13 +7,14 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Addbook = () => {
-  const history=useNavigate
+  const history=useNavigate();
   const [inputs,setInputs]=useState({
     name:"",
     description:"",
     author:"",
     image:""
   });
+
   const handleChange=(e)=>{
     setInputs((prevState)=>({
       ...prevState,
