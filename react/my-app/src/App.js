@@ -6,6 +6,8 @@ import  Addbook  from "./components/Addbook"
 import  About  from "./components/About"
 import Allbook from "./components/Book/dembook"
 import Bookdetails from "./components/Book/Bookdetails"
+import Del from "./components/Book/deletebook"
+
 function App() {
   return (
     <React.Fragment>
@@ -21,6 +23,7 @@ function App() {
           <Route path='/about' element={<About/>} exact/>
           <Route path='/books' element={<Allbook/>}exact />
           <Route path='/books/:id' element={<Bookdetails/>} exact/>
+          <Route path='/about/:id' element={<Del/>}exact />
           
         </Routes>
 

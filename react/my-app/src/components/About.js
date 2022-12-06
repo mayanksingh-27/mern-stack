@@ -1,20 +1,89 @@
 import React from 'react'
-import axios from 'axios';
-const element = document.querySelector('#post-request .article-id');
-const article = { name:"mayank" };
-const sendreq=()=>{
-   axios.post('http://localhost:5000/students', article)
-   .then(response => element.innerHTML = response.data.id);
+import { Container, Row, Col } from "react-bootstrap";
+import { contactConfig } from "../components/content_option"
+import "./aboutus.css"
 
-};
-   
+import SendIcon from '@mui/icons-material/Send';
+import {Button, Typography} from '@mui/material';
 
 
-
-    
+const sendreq = () => {
+  return (
+   <Container>
      
- 
- 
-   
+   <Row className="mb-5 mt-3">
+     <Col lg="8">
+       <h1 className="display-4 mb-4">Contact Me</h1>
+       <hr className="t_border my-4 ml-0 text-left" />
+     </Col>
+   </Row>
+   <Row className="sec_sp">
+     <Col lg="5" className="mb-5">
+       <h3 className="color_sec py-4">Get in touch</h3>
+       <address>
+         <strong>Email:</strong>{" "}
+         <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
+           {contactConfig.YOUR_EMAIL}
+         </a>
+         <br />
+         <br />
+         {contactConfig.hasOwnProperty("YOUR_FONE") ? (
+           <p>
+             <strong>Phone:</strong> {contactConfig.YOUR_FONE}
+           </p>
+         ) : (
+           ""
+         )}
+       </address>
+       <p><h4>{contactConfig.description}</h4></p>
+     </Col>
+     <Col lg="7" className="d-flex align-items-center">
+       <form  className="contact__form w-100">
+         <Row>
+           <Col lg="6" className="form-group">
+             <input
+               className="form-control"
+               id="name"
+               name="name"
+               placeholder="Name" 
+               type="text"
+               
+               required 
+             />
+           </Col>
+           <Col lg="6" className="form-group">
+             <input
+               className="form-control rounded-0"
+               id="email"
+               name="email"
+               placeholder="Email"
+               type="email" 
+               required 
+             />
+           </Col>
+         </Row>
+         <textarea
+           className="form-control rounded-0"
+           id="message"
+           name="message"
+           placeholder="Message"
+           rows="5" 
+           required
+         ></textarea>
+         <br />
+         <Row>
+           <Col lg="12" className="form-group">
+            
+
+             <Button variant="primary" type="submit"  ><Typography>Send<SendIcon></SendIcon></Typography></Button>
+      
+           </Col>
+         </Row>
+       </form>
+     </Col>
+   </Row>
+ </Container>
+  )
+}
 
 export default sendreq

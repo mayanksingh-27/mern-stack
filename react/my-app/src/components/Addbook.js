@@ -3,10 +3,13 @@ import { FormLabel, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import axios from 'axios'
 import { Button } from 'bootstrap'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Addbook = () => {
+  toast("Wow so easy!");
+  
   const history=useNavigate();
   const [inputs,setInputs]=useState({
     name:"",
@@ -14,6 +17,7 @@ const Addbook = () => {
     author:"",
     image:""
   });
+  
 
   const handleChange=(e)=>{
     setInputs((prevState)=>({
@@ -55,15 +59,16 @@ const sendreq=async()=>{
    <form onSubmit={handleSubmit}>
     <Box display="flex" flexDirection="column" justifyContent={"content"} maxWidth={700} alignContent={"center"} alignSelf="center" marginLeft={"auto"} marginRight={"auto"} marginTop={10} padding={"10px"}>
     <FormLabel>Name</FormLabel>
-    <TextField value={inputs.name} onChange={handleChange}margin='normal' fullWidth variant='outlined' name="name"/>
+    <TextField value={inputs.name} onChange={handleChange}margin='normal' fullWidth variant='outlined' name="name" required/>
     <FormLabel>Author</FormLabel>
-    <TextField value={inputs.author} onChange={handleChange}margin='normal' fullWidth variant='outlined' name="author"/>
+    <TextField value={inputs.author} onChange={handleChange}margin='normal' fullWidth variant='outlined' name="author"required/>
     <FormLabel>description</FormLabel>
-    <TextField value={inputs.description} onChange={handleChange}margin='normal' fullWidth variant='outlined' name="description"/>
+    <TextField value={inputs.description} onChange={handleChange}margin='normal' fullWidth variant='outlined' name="description"required/>
     <FormLabel>image</FormLabel>
-    <TextField value={inputs.image} onChange={handleChange}margin='normal' fullWidth variant='outlined' name="image"/>
+    <TextField value={inputs.image} onChange={handleChange}margin='normal' fullWidth variant='outlined' name="image"required/>
 
    <button variant="contained" type="submit">Add Book</button>
+   
     </Box>
    </form>
   )
